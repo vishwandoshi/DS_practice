@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+bool balancedPara(string s){
+    stack<char> stk;
+    for(int i=0; i<s.size(); i++){
+    if(s[i]=='(' or s[i]=='[' or s[i]=='{'){
+        stk.push(s[i]);
+    }
+    else {
+        if(s[i]==')' and stk.top()=='(') stk.pop();
+        if(s[i]=='}' and stk.top()=='{') stk.pop();
+        if(s[i]==']' and stk.top()=='[') stk.pop();
+    }
+    }
+    if(stk.empty()==true) return true;
+    return false;
+
+}
+int main()
+{
+    string s = "({[]})";
+    cout<<balancedPara(s);
+
+    return 0;
+}
