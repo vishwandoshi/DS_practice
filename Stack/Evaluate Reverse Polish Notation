@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int evalRPN(vector<string>& tokens) {
+        
+        stack<long> stk;
+        
+        for(auto s: tokens){
+
+            if(s=="+" or s=="-" or s=="*" or s=="/"){
+                long x = stk.top();
+                stk.pop();
+                long y = stk.top();
+                stk.pop();
+                if(s == "+") stk.push(y+x);
+                else if(s == "-") stk.push(y-x);
+                else if(s == "*") stk.push(y*x);
+                else stk.push(y/x);
+            }
+            else {
+                int n = stoi(s);
+                stk.push(n);
+            }
+        }
+        return stk.top();
+    }
+};
